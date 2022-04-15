@@ -22,17 +22,40 @@ def main():
     
     def user_input_parameters():
         temperatura = st.sidebar.slider("Temperatura", -10, 50, 20)
-        laborable = st.sidebar.select_slider("Laborable (0=No, 1=Si)", options=[0,1])
-        lluvia = st.sidebar.select_slider("Lluvia (0=No, 1=Si)", options=[0,1])
-        otono = st.sidebar.select_slider("Otono (0=No, 1=Si)", options=[0,1])
-        primavera = st.sidebar.select_slider("Primavera (0=No, 1=Si)", options=[0,1])
-        verano = st.sidebar.select_slider("Verano (0=No, 1=Si)", options=[0,1])
+
+        #Laborable
+        laborable = st.sidebar.selectbox("Dia Laborable", ['Si', 'No'])
+        tipo_dia = 1
+        if laborable == 'No':
+            tipo_dia = 0
+
+        #Lluvia
+        lluvia = st.sidebar.selectbox("Lluvia", ['Si', 'No'])
+        llueve = 0
+        if lluvia == 'Si':
+            llueve = 1       
+        
+        
+        #Temporada:
+        estacion = st.sidebar.selectbox("Estacion", ['otono', 'primavera', 'verano', 'invierno'])
+        temporada = []
+        if estacion == 'otono':
+            temporada = [1,0,0]
+        elif estacion == 'primavera':
+            temporada = [0,1,0]
+        elif estacion == 'verano':
+            temporada = [0,0,1]
+        else:
+            temporada = [0,0,0]
+        
+
+
         data = {'temperatura': temperatura,
-                'laborable': laborable,
-                'lluvia': lluvia,
-                'otono': otono,
-                'primavera': primavera,
-                'verano': verano
+                'laborable': tipo_dia,
+                'lluvia': llueve,
+                'otono': temporada[0],
+                'primavera': temporada[1],
+                'verano': temporada[2]
                 }
 
         features = pd.DataFrame(data, index=[0])
@@ -47,6 +70,7 @@ def main():
     if st.button('Run'):
         st.write('La cantidad de viajes estimadas para ese día es:')
         st.success(model.predict(df))
+
 if __name__ == '__main__':
     main()
 
