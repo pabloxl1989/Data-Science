@@ -69,7 +69,7 @@ def main():
     
     if st.button('Run'):
         st.write('La cantidad de viajes estimadas para ese día es:')
-        st.success(model.predict(df))
+        st.success(model.predict(df).astype(int))
 
 if __name__ == '__main__':
     main()
