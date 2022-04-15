@@ -2,3 +2,8 @@ sklearn
 pandas
 streamlit
 xgboost
+seaborn
+matplotlib
+numpy
+statistics
+pickle
