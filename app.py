@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import statistics
 import pickle
 import xgboost
-
+from xgboost.sklearn import XGBClassifier, XGBRegressor
 from streamlit_folium import folium_static
 import folium
 
@@ -87,14 +87,16 @@ st.write("--------")
     
 #Modelos predictivos Machine Learning: 
 
-#Abrimos los archivos pickle
-with open('xgbr.pkl', 'rb') as xgbr:
-    model = pickle.load(xgbr)
+#Abrimos los modelos:
 
     
-with open('bicis-disponibles.pkl', 'rb') as bicis:
-    model_bici = pickle.load(bicis)
+model = XGBRegressor()
+model.load_model("viajes.json")
+
     
+
+model_bici = XGBClassifier()
+model_bici.load_model("bicis-disponibles.json")  
 
     
 
@@ -162,7 +164,7 @@ elif modelo == "Cantidad de viajes por día (Prestadora)":
 
     if st.button('Run'):
         st.write('La cantidad de viajes estimadas para ese día es:')
-        st.success(model.predict(df))
+        st.success(model.predict(df).astype(int))
         st.image("Feature_Importance_Viajes.jpg", use_column_width=True)
     
 

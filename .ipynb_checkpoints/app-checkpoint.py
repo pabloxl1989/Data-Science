@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import statistics
 import pickle
 import xgboost
-
+from xgboost.sklearn import XGBClassifier, XGBRegressor
 from streamlit_folium import folium_static
 import folium
 
@@ -87,14 +87,16 @@ st.write("--------")
     
 #Modelos predictivos Machine Learning: 
 
-#Abrimos los archivos pickle
-with open('xgbr.pkl', 'rb') as xgbr:
-    model = pickle.load(xgbr)
+#Abrimos los modelos:
 
     
-with open('bicis-disponibles.pkl', 'rb') as bicis:
-    model_bici = pickle.load(bicis)
+model = XGBRegressor()
+model.load_model("viajes.json")
+
     
+
+model_bici = XGBClassifier()
+model_bici.load_model("bicis-disponibles.json")  
 
     
 
