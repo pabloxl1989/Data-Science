@@ -6,4 +6,5 @@ seaborn
 matplotlib
 numpy
 statistics
+streamlit_folium
 
