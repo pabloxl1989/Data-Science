@@ -162,7 +162,7 @@ elif modelo == "Cantidad de viajes por día (Prestadora)":
 
     if st.button('Run'):
         st.write('La cantidad de viajes estimadas para ese día es:')
-        st.success(model.predict(df).astype(int))
+        st.success(model.predict(df))
         st.image("Feature_Importance_Viajes.jpg", use_column_width=True)
     
 
