@@ -158,7 +158,11 @@ elif modelo == "Cantidad de viajes por día (Prestadora)":
     df = user_input_parameters()
     
     st.write("--------") 
-    st.subheader("Modelo Utilizado : XGBRegressor")
+    st.subheader("Modelo Utilizado : XGBRegressor (GridSearch)")
+    st.image("R2_Score.jpg", use_column_width=True)
+    st.write("--------")
+    st.image("RMSE.jpg", use_column_width=True)
+    st.write("--------")
     st.subheader('Parámetros Elegidos')
     st.write(df)
 
@@ -191,7 +195,7 @@ else:
         if lluvia_bici == 'Si':
             llueve_bici = 1
 
-        datos_dia_bici = [temperatura_bici, tipo_dia_bici, llueve_bici]
+        datos_dia_bici = [temperatura_bici, llueve_bici, tipo_dia_bici]
 
 
         #Hora:
@@ -225,7 +229,7 @@ else:
         
         
         #Creamos un dataframe con los parametros elegidos:
-        parametros_bici = pd.DataFrame(dict(zip(["Temperatura", "Lluvia", "Laborable", "Hora", "Estación"], [temperatura_bici, laborable_bici,                                                    lluvia_bici, hora_bici, estacion_bici])), index=[0])
+        parametros_bici = pd.DataFrame(dict(zip(["Temperatura", "Lluvia", "Laborable", "Hora", "Estación"], [temperatura_bici, lluvia_bici,                                                              laborable_bici, hora_bici, estacion_bici])), index=[0])
         
         #Creamos el dataframe con las features para el modelo
         data_bici = dict(zip(columnas_bici, features))
@@ -235,7 +239,12 @@ else:
     
     features_bici = user_input_parameters_bicis()
 
-    st.subheader("Modelo : XGBRegressor")
+    st.subheader("Modelo : XGBClassifier")
+    st.image("Roc_Curve.jpg", use_column_width=True)
+    st.write("--------")
+    st.image("Confusion_Matrix.jpg", use_column_width=True)
+    st.write("--------")
+    st.image("Metricas.jpg", use_column_width=True)
     st.subheader('Parámetros Elegidos')
     st.write(features_bici[0])
 
