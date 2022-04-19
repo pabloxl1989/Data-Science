@@ -159,9 +159,9 @@ elif modelo == "Cantidad de viajes por día (Prestadora)":
     
     st.write("--------") 
     st.subheader("Modelo Utilizado : XGBRegressor (GridSearch)")
-    st.image("R2_Score.jpg", use_column_width=True)
+    st.image("R2_Score.jpg", use_column_width="auto")
     st.write("--------")
-    st.image("RMSE.jpg", use_column_width=True)
+    st.image("RMSE.jpg", use_column_width="auto")
     st.write("--------")
     st.subheader('Parámetros Elegidos')
     st.write(df)
@@ -240,9 +240,9 @@ else:
     features_bici = user_input_parameters_bicis()
 
     st.subheader("Modelo : XGBClassifier")
-    st.image("Roc_Curve.jpg", use_column_width=True)
+    st.image("Roc_Curve.jpg", use_column_width="auto")
     st.write("--------")
-    st.image("Confusion_Matrix.jpg", use_column_width=True)
+    st.image("Confusion_Matrix.jpg", use_column_width="auto")
     st.write("--------")
     st.image("Metricas.jpg", use_column_width=True)
     st.subheader('Parámetros Elegidos')
